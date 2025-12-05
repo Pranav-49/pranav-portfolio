@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap');
+
+@theme {
+  --color-primary: #00f3ff;
+  --color-secondary: #bc13fe;
+  --color-background: #0a0a0a;
+  --color-surface: #111111;
+
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "Outfit", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-background);
+    color: white;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .neon-text {
+    color: var(--color-primary);
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5),
+      0 0 20px rgba(0, 243, 255, 0.3);
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    background: rgba(0, 243, 255, 0.1);
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    transition: 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary);
+    color: black;
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.6);
+  }
+
+  .section-padding {
+    padding: 5rem 1.5rem;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
