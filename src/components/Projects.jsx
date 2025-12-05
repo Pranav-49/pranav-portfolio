@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
 import Modal from './Modal';
+import fitnessUI from '../assets/fitness UI.png';
+import vistaUI from '../assets/vistamart UI.jpeg';
+import railUI from '../assets/railease UI.jpeg';
 
 const projectsData = [
     {
@@ -20,7 +23,7 @@ const projectsData = [
         ],
         github: "https://github.com/Pranav-49/Fitness-App", // Placeholder
         demo: "#",
-        image: "/fitness UI.jpeg"
+        image: fitnessUI
     },
     {
         id: 2,
@@ -38,7 +41,7 @@ const projectsData = [
         ],
         github: "https://github.com/Pranav-49/VistaMart",
         demo: "#",
-        image: "/vistamart UI.jpeg"
+        image: vistaUI
     },
     {
         id: 3,
@@ -56,7 +59,7 @@ const projectsData = [
         ],
         github: "https://github.com/Pranav-49/RailEase",
         demo: "#",
-        image: "/railease UI.jpeg"
+        image: railUI
     }
 ];
 
@@ -67,43 +70,43 @@ const ProjectCard = ({ project, onClick }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
-            className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 group cursor-pointer"
+            className="overflow-hidden transition-all duration-300 border cursor-pointer bg-white/5 border-white/10 rounded-2xl hover:bg-white/10 group"
             onClick={() => onClick(project)}
         >
-            <div className="h-48 bg-gray-800 relative overflow-hidden group">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors z-10"></div>
+            <div className="relative h-48 overflow-hidden bg-gray-800 group">
+                <div className="absolute inset-0 z-10 transition-colors bg-black/20 group-hover:bg-black/0"></div>
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
                 />
             </div>
 
             <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
+                <div className="flex items-start justify-between mb-4">
                     <div>
-                        <span className="text-primary text-sm font-medium">{project.category}</span>
-                        <h3 className="text-xl font-bold text-white mt-1">{project.title}</h3>
+                        <span className="text-sm font-medium text-primary">{project.category}</span>
+                        <h3 className="mt-1 text-xl font-bold text-white">{project.title}</h3>
                     </div>
-                    <span className="text-gray-500 text-sm border border-gray-700 px-2 py-1 rounded">{project.year}</span>
+                    <span className="px-2 py-1 text-sm text-gray-500 border border-gray-700 rounded">{project.year}</span>
                 </div>
 
-                <p className="text-gray-400 text-sm mb-6 line-clamp-2">
+                <p className="mb-6 text-sm text-gray-400 line-clamp-2">
                     {project.summary}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.slice(0, 3).map((t, i) => (
-                        <span key={i} className="text-xs bg-black/30 text-gray-300 px-2 py-1 rounded-full border border-white/5">
+                        <span key={i} className="px-2 py-1 text-xs text-gray-300 border rounded-full bg-black/30 border-white/5">
                             {t}
                         </span>
                     ))}
                     {project.tech.length > 3 && (
-                        <span className="text-xs text-gray-500 px-2 py-1 self-center">+{project.tech.length - 3} more</span>
+                        <span className="self-center px-2 py-1 text-xs text-gray-500">+{project.tech.length - 3} more</span>
                     )}
                 </div>
 
-                <button className="text-primary text-sm font-medium group-hover:underline">
+                <button className="text-sm font-medium text-primary group-hover:underline">
                     View Details &rarr;
                 </button>
             </div>
@@ -115,24 +118,24 @@ const Projects = () => {
     const [selectedProject, setSelectedProject] = useState(null);
 
     return (
-        <section className="min-h-screen py-20 px-6 md:px-12 lg:px-24">
-            <div className="max-w-7xl mx-auto">
+        <section className="min-h-screen px-6 py-20 md:px-12 lg:px-24">
+            <div className="mx-auto max-w-7xl">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="mb-16 text-center"
                 >
-                    <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-center">
+                    <h2 className="mb-4 text-4xl font-bold text-center md:text-5xl font-heading">
                         Featured <span className="text-primary neon-text">Projects</span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="max-w-2xl mx-auto text-lg text-gray-400">
                         A selection of my recent work, featuring full-stack applications and microservices.
                     </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {projectsData.map((project) => (
                         <ProjectCard
                             key={project.id}
@@ -146,30 +149,30 @@ const Projects = () => {
             <Modal isOpen={!!selectedProject} onClose={() => setSelectedProject(null)}>
                 {selectedProject && (
                     <div>
-                        <div className="relative h-64 w-full mb-6 rounded-xl overflow-hidden">
+                        <div className="relative w-full h-64 mb-6 overflow-hidden rounded-xl">
                             <img
                                 src={selectedProject.image}
                                 alt={selectedProject.title}
-                                className="w-full h-full object-cover"
+                                className="object-cover w-full h-full"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
                         </div>
 
-                        <div className="flex justify-between items-start mb-6">
+                        <div className="flex items-start justify-between mb-6">
                             <div>
-                                <span className="text-primary font-medium">{selectedProject.category}</span>
-                                <h3 className="text-3xl font-bold text-white mt-2">{selectedProject.title}</h3>
+                                <span className="font-medium text-primary">{selectedProject.category}</span>
+                                <h3 className="mt-2 text-3xl font-bold text-white">{selectedProject.title}</h3>
                             </div>
-                            <span className="text-gray-400 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+                            <span className="px-3 py-1 text-gray-400 border rounded-full bg-white/5 border-white/10">
                                 {selectedProject.year}
                             </span>
                         </div>
 
                         <div className="mb-8">
-                            <h4 className="text-lg font-semibold text-white mb-3">Technologies Used</h4>
+                            <h4 className="mb-3 text-lg font-semibold text-white">Technologies Used</h4>
                             <div className="flex flex-wrap gap-2">
                                 {selectedProject.tech.map((t, i) => (
-                                    <span key={i} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm border border-primary/20">
+                                    <span key={i} className="px-3 py-1 text-sm border rounded-full bg-primary/10 text-primary border-primary/20">
                                         {t}
                                     </span>
                                 ))}
@@ -177,11 +180,11 @@ const Projects = () => {
                         </div>
 
                         <div className="mb-8">
-                            <h4 className="text-lg font-semibold text-white mb-3">Key Features</h4>
+                            <h4 className="mb-3 text-lg font-semibold text-white">Key Features</h4>
                             <ul className="space-y-2">
                                 {selectedProject.details.map((detail, i) => (
                                     <li key={i} className="flex items-start text-gray-300">
-                                        <span className="text-primary mr-2 mt-1">•</span>
+                                        <span className="mt-1 mr-2 text-primary">•</span>
                                         {detail}
                                     </li>
                                 ))}
@@ -193,13 +196,13 @@ const Projects = () => {
                                 href={selectedProject.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white rounded-full transition-colors border border-white/10"
+                                className="flex items-center gap-2 px-6 py-3 text-white transition-colors border rounded-full bg-white/5 hover:bg-white/10 border-white/10"
                             >
                                 <FaGithub /> GitHub
                             </a>
                             <a
                                 href={selectedProject.demo}
-                                className="flex items-center gap-2 px-6 py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-colors border border-primary/20"
+                                className="flex items-center gap-2 px-6 py-3 transition-colors border rounded-full bg-primary/10 hover:bg-primary/20 text-primary border-primary/20"
                             >
                                 <FaExternalLinkAlt /> Live Demo
                             </a>
